@@ -1,0 +1,62 @@
+cmake_minimum_required(VERSION 3.31.3)
+
+project(first-project 
+VERSION 1.0.0
+LANGUAGES C CXX
+)
+
+
+
+set(CMAKE_CXX_STANDARD			14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS		OFF)
+
+# This creates a variable so the value is firstTutorial and variable name is PROJECT_TARGET_NAME
+set(PROJECT_TARGET_NAME firstTutorial)
+
+add_executable(${PROJECT_TARGET_NAME}
+	${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/include/Game.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/StringHelpers.inl
+	${CMAKE_CURRENT_SOURCE_DIR}/include/StringHelpers.hpp
+	${CMAKE_CURRENT_SOURCE_DIR}/src/Game.cpp)
+
+#TELLS CMAKE TO LOOK IN THIS FOLDER FOR HEADER FILES
+target_include_directories(${PROJECT_TARGET_NAME} PUBLIC 
+	${CMAKE_CURRENT_SOURCE_DIR}/include
+)
+include(FetchContent)
+set(SFML_LIB SFML)
+
+FetchContent_Declare(${SFML_LIB}
+	GIT_REPOSITORY https://github.com/SFML/SFML
+	GIT_TAG 2.6.0
+	GIT_SHALLOW	FALSE   # git shallow means that all the dependencies of the libraries should also be copied rather than referencing them 
+)
+FetchContent_MakeAvailable(${SFML_LIB})
+
+# we have fetched the library from github but it's not connected to our project so to link it to our project we do the below 
+target_link_libraries(${PROJECT_TARGET_NAME} PUBLIC sfml-graphics)
+target_link_libraries(${PROJECT_TARGET_NAME} PUBLIC sfml-window)
+target_link_libraries(${PROJECT_TARGET_NAME} PUBLIC sfml-system)
+target_link_libraries(${PROJECT_TARGET_NAME} PUBLIC sfml-audio)
+
+#syntax 
+#function(funtion_name parameter1 parameter2)
+function(CopyLibrariesToTarget LIB_NAME TARGET_NAME)
+add_custom_command(
+	TARGET ${TARGET_NAME}
+	POST_BUILD
+	COMMAND
+	${CMAKE_COMMAND} -E copy_if_different
+	# TARGET FILE indicates the build file
+	$<TARGET_FILE:${LIB_NAME}>
+	$<TARGET_FILE_DIR:${TARGET_NAME}>
+)
+endfunction()
+
+#function calls
+COPYLIBRARIESTOTARGET(sfml-graphics ${PROJECT_TARGET_NAME})
+COPYLIBRARIESTOTARGET(sfml-window ${PROJECT_TARGET_NAME})
+COPYLIBRARIESTOTARGET(sfml-system ${PROJECT_TARGET_NAME})
+COPYLIBRARIESTOTARGET(sfml-audio ${PROJECT_TARGET_NAME})
