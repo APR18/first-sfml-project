@@ -3,6 +3,7 @@
 
 
 #include<SFML/Graphics.hpp>
+#include "TextureHolder.h"
 class Game
 {
 public:
@@ -30,8 +31,6 @@ private:
 	sf::Font mFont;
 	sf::Text mStatisticsText;
 	sf::Time mStatisticsUpdateTime;
-
-	
 };
 
 #endif // !GAME_HPP

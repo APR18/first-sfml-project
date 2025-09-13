@@ -18,6 +18,8 @@ add_executable(${PROJECT_TARGET_NAME}
 	${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/include/Game.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/StringHelpers.inl
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TextureHolder.h
+	${CMAKE_CURRENT_SOURCE_DIR}/src/TextureHolder.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/include/StringHelpers.hpp
 	${CMAKE_CURRENT_SOURCE_DIR}/src/Game.cpp)
 

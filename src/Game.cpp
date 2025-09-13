@@ -11,7 +11,7 @@ Game::Game()
 	mIsMovingDown(false),
 	mIsMovingLeft(false),
 	mIsMovingRight(false),
-	mTexture(),
+	mTextures(),
 	mFont(),
 	mStatisticsNumFrames(0),
 	mStatisticsText(),
