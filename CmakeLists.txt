@@ -17,10 +17,10 @@ set(PROJECT_TARGET_NAME firstTutorial)
 add_executable(${PROJECT_TARGET_NAME}
 	${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/include/Game.h
-	${CMAKE_CURRENT_SOURCE_DIR}/include/StringHelpers.inl
-	${CMAKE_CURRENT_SOURCE_DIR}/include/TextureHolder.h
-	${CMAKE_CURRENT_SOURCE_DIR}/src/TextureHolder.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/include/StringHelpers.hpp
+	${CMAKE_CURRENT_SOURCE_DIR}/include/StringHelpers.inl
+	${CMAKE_CURRENT_SOURCE_DIR}/include/ResourceHolder.hpp
+	${CMAKE_CURRENT_SOURCE_DIR}/include/ResourceHolder.inl
 	${CMAKE_CURRENT_SOURCE_DIR}/src/Game.cpp)
 
 #TELLS CMAKE TO LOOK IN THIS FOLDER FOR HEADER FILES

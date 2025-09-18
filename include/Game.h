@@ -3,7 +3,7 @@
 
 
 #include<SFML/Graphics.hpp>
-#include "TextureHolder.h"
+#include "ResourceHolder.hpp"
 class Game
 {
 public:
